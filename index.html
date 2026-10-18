@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="theme-color" content="#080808" />
+  <title>Plan Nutricional</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#000000">
+</head>
+<body>
+  <div class="app">
+
+    <!-- Encabezado -->
+    <header class="topbar">
+      <div>
+        <p class="topbar__eyebrow">Recomposición corporal</p>
+        <h1 class="topbar__title" id="tab-title">Comida 1</h1>
+      </div>
+      <div class="topbar__date" id="today-label"></div>
+    </header>
+
+    <!-- Resumen diario -->
+    <section class="macros" aria-label="Resumen diario">
+      <div class="macro"><span class="macro__value">2,300</span><span class="macro__label">kcal</span></div>
+      <div class="macro"><span class="macro__value">165–170 g</span><span class="macro__label">proteína</span></div>
+      <div class="macro"><span class="macro__value">270 g</span><span class="macro__label">carbos</span></div>
+      <div class="macro"><span class="macro__value">60 g</span><span class="macro__label">grasas</span></div>
+    </section>
+
+    <!-- Vistas (una por pestaña) -->
+    <main class="views">
+
+      <section class="view is-active" id="view-comida1" data-tab="comida1" data-title="Comida 1">
+        <div class="view__head">
+          <h2>Desayuno completo</h2>
+          <p>~650 kcal · 40–45 g proteína</p>
+        </div>
+        <div class="cards" id="cards-comida1"></div>
+      </section>
+
+      <section class="view" id="view-comida2" data-tab="comida2" data-title="Comida 2">
+        <div class="view__head">
+          <h2>Almuerzo principal</h2>
+          <p>~750 kcal · 50 g proteína</p>
+        </div>
+        <div class="cards" id="cards-comida2"></div>
+      </section>
+
+      <section class="view" id="view-comida3" data-tab="comida3" data-title="Comida 3">
+        <div class="view__head">
+          <h2>Cena recuperadora</h2>
+          <p>~650–700 kcal · 40–45 g proteína</p>
+        </div>
+        <div class="cards" id="cards-comida3"></div>
+      </section>
+
+      <section class="view" id="view-preentreno" data-tab="preentreno" data-title="Pre-entreno">
+        <div class="view__head">
+          <h2>Combustible rápido</h2>
+          <p>30–45 min antes de la actividad</p>
+        </div>
+        <div class="cards" id="cards-preentreno"></div>
+      </section>
+
+      <section class="view" id="view-hidratacion" data-tab="hidratacion" data-title="Hidratación">
+        <div class="view__head">
+          <h2>Balance hídrico</h2>
+          <p>Meta: 4,000 ml · botellas de 740 ml</p>
+        </div>
+
+        <div class="hydro">
+          <div class="ring">
+            <svg viewBox="0 0 220 220" class="ring__svg" aria-hidden="true">
+              <defs>
+                <linearGradient id="ringGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" stop-color="#5eead4" />
+                  <stop offset="55%" stop-color="#38bdf8" />
+                  <stop offset="100%" stop-color="#818cf8" />
+                </linearGradient>
+              </defs>
+              <circle class="ring__track" cx="110" cy="110" r="94" />
+              <circle class="ring__bar" id="ring-bar" cx="110" cy="110" r="94" />
+            </svg>
+            <div class="ring__center">
+              <span class="ring__percent" id="hydro-percent">0%</span>
+              <span class="ring__caption">de tu meta</span>
+            </div>
+          </div>
+
+          <p class="hydro__bottles" id="hydro-bottles">0 / 6 Botellas</p>
+          <p class="hydro__ml" id="hydro-ml">0 ml / 4000 ml</p>
+
+          <div class="hydro__controls">
+            <button class="round-btn" id="btn-minus" type="button" aria-label="Quitar una botella">−</button>
+            <button class="round-btn round-btn--primary" id="btn-plus" type="button" aria-label="Agregar una botella">+</button>
+          </div>
+
+          <div class="hydro__schedule">
+            <div class="chip"><span>Al despertar</span><strong>500 ml en ayunas</strong></div>
+            <div class="chip"><span>Pre-entreno</span><strong>500–750 ml a sorbos</strong></div>
+            <div class="chip"><span>Resto del día</span><strong>500 ml entre comidas</strong></div>
+          </div>
+        </div>
+      </section>
+
+    </main>
+  </div>
+
+  <!-- Barra de navegación inferior -->
+  <nav class="bottom-nav" id="bottom-nav" aria-label="Navegación principal">
+    <button class="nav-item is-active" data-target="comida1" type="button">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 11h16a8 8 0 0 1-16 0Z"/><path d="M8 7c0-1.5 1-1.5 1-3M12 7c0-1.5 1-1.5 1-3M16 7c0-1.5 1-1.5 1-3"/></svg>
+      <span>Comida 1</span>
+    </button>
+    <button class="nav-item" data-target="comida2" type="button">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 3v8M4 3v5a3 3 0 0 0 6 0V3M7 11v10"/><path d="M17 21V3c-2.5 1.5-3.5 4-3.5 7 0 2 1 3 3.5 3"/></svg>
+      <span>Comida 2</span>
+    </button>
+    <button class="nav-item" data-target="comida3" type="button">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 14.5A8 8 0 0 1 9.5 4 8 8 0 1 0 20 14.5Z"/></svg>
+      <span>Comida 3</span>
+    </button>
+    <button class="nav-item" data-target="preentreno" type="button">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M13 2 4 14h7l-1 8 9-12h-7l1-8Z"/></svg>
+      <span>Pre-entreno</span>
+    </button>
+    <button class="nav-item" data-target="hidratacion" type="button">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3s6 6.5 6 11a6 6 0 0 1-12 0c0-4.5 6-11 6-11Z"/></svg>
+      <span>Agua</span>
+    </button>
+  </nav>
+
+  <!-- Toast de autoguardado -->
+  <div class="toast" id="toast" role="status" aria-live="polite" aria-atomic="true">
+    <span class="toast__dot"></span>
+    <span class="toast__text" id="toast-text">Guardado</span>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
